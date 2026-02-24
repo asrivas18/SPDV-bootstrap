@@ -109,13 +109,5 @@ source("benchmark_speedup.R")
 # Tests serial vs. parallel for n = 10^3 to 10^6, B=10,000.
 # Prints table matching article (timings vary by hardware; article used 16-core AMD EPYC).
 
-
-**Step-by-Step GitHub Upload Instructions**
-1. Replace `bootstrap_functions.R` with updated version.
-2. Replace `real_data_bmi.R` and `real_data_income.R`.
-3. Add `benchmark_speedup.R`.
-4. Update `README.md`.
-5. Commit: "Add parallel bootstrap speedup + benchmark script".
-
 This adds **full parallel speedup** as in article Table 1. Applications now run faster, benchmark reproduces timings. Repo is complete!
 
