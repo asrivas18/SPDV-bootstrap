@@ -1,4 +1,4 @@
-# SPDV-bootstrap: Reproducible Code for "Scalable Studentized Bootstrap Variance Inference via Sample Pairwise Differences"
+# SPDV-bootstrap: Reproducible Code for "Scalable Studentized Bootstrap Inference for Variance via Pairwise Difference Representation"
 
 This repository contains all code to reproduce the real-world applications and bootstrap routines in the CSDA article by Srivastav & Srivastav.
 
