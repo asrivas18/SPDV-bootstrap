@@ -1,5 +1,5 @@
 # ============================================================================
-# Reproduce Table 2 and Figure 2: Coverage Study for SPDV Studentized Bootstrap
+# Reproduce Table 3 and Figure 2: Coverage Study for SPDV Studentized Bootstrap
 # Manuscript: Scalable Studentized Bootstrap Inference for Variance via Pairwise Difference Representation
 # Journal: Computational Statistics & Data Analysis (CSDA)
 # Submission-freeze version (true bootstrap-t implementation)
@@ -252,4 +252,5 @@ ggsave("Figure2_Coverage_color.pdf",
        dpi = 300)
 
 cat("\nSimulation complete.\n")
+
 cat("Files saved: coverage_results.rds, coverage_results.csv, Figure2_Coverage_CSDA.pdf, Figure2_Coverage_color.pdf\n")
