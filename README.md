@@ -15,12 +15,12 @@ This work introduces a scalable framework for nonparametric studentized (bootstr
 
 Key results:
 - Theoretical: Bootstrap consistency under finite fourth moments.
-- Empirical: Studentized intervals substantially outperform classical chi-square in non-normal settings (Table 2).
-- Computational: Up to 5 orders of magnitude speedup (Tables 1 & 2).
+- Empirical: Studentized intervals substantially outperform classical chi-square in non-normal settings (Table 3).
+- Computational: Up to 5 orders of magnitude speedup (Tables 1 & 3).
 
 ## Repository Contents
 
-- `simulation.R` / `coverage_study.R`: Main script to reproduce Table 2 (coverage probabilities) and Figure 2.
+- `simulation.R` / `coverage_study.R`: Main script to reproduce Table 3 (coverage probabilities) and Figure 2.
 - `bootstrap_functions.R` / `spdv_boot.R`: Core functions for SPDV, studentized bootstrap, influence-function SE.
 - `coverage_results.rds` / `coverage_results.csv`: Raw Monte Carlo results (5,000 × 4 × 3 × 5,000 = 300 million bootstrap runs).
 - `Figure2_Coverage_color.pdf`: Color version of coverage plot.
@@ -47,7 +47,7 @@ install.packages(c("ggplot2", "dplyr", "tidyr", "foreach", "doParallel", "doRNG"
 
 How to Reproduce Results
 
-Reproduce Table 2 (Coverage) and Figure 2:R# Set working directory to repo root
+Reproduce Table 3 (Coverage) and Figure 2:R# Set working directory to repo root
 setwd("path/to/SPDV-bootstrap")
 
 # Run the full simulation (M=5000, B=5000 – ~43 minutes parallel)
@@ -55,7 +55,7 @@ source("simulation.R")
 
 # Or quick test mode (M=500, B=500 – ~2 minutes)
 source("simulation_quick.R")Output:
-Console: Table 2 printed
+Console: Table 3 printed
 Files: coverage_results.rds, coverage_results.csv
 Plots: Figure2_Coverage_color.pdf, Figure2_Coverage_CSDA.pdf
 
@@ -81,4 +81,5 @@ MIT License – see LICENSE file.
 Contact
 Sudesh K. Srivastav
 ssrivas@tulane.edu
+
 Department of Biostatistics and Data Science, Tulane University
