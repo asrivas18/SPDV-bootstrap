@@ -1,7 +1,7 @@
 # ============================================================================
 # Reproduce Table 3 and Figure 2: Coverage Study for SPDV Studentized Bootstrap
-# Manuscript: Scalable Studentized Bootstrap Inference for Variance via Pairwise Difference Representation
-# Journal: Computational Statistics & Data Analysis (CSDA)
+# Manuscript: Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation
+# Journal: Journal of Statistical Computation and Simulation (JSCS)
 # Submission-freeze version (true bootstrap-t implementation)
 # Runtime: ~60–120 minutes depending on hardware (parallel)
 # ============================================================================
@@ -12,7 +12,7 @@ set.seed(12345)
 # ---------------------------------------------------------------------------
 # Simulation size (change quick_test to TRUE for fast debugging)
 # ---------------------------------------------------------------------------
-quick_test <- FALSE
+quick_test <- TRUE
 if (quick_test) {
   M <- 500     # Monte Carlo replications
   B <- 500     # Bootstrap resamples per replication
@@ -189,8 +189,8 @@ kable(table2,
       format = "latex",
       booktabs = TRUE,
       escape = FALSE,
-      caption = "Empirical coverage probabilities (\\%) of 95\\% confidence intervals for $\\sigma^2 = 1$. Monte Carlo standard errors are at most $\\pm 0.31\\%$ (M = 5{,}000).") %>%
-  kable_styling(latex_options = c("hold_position")) %>%
+      caption = "Empirical coverage probabilities (%) for $\\sigma^2=1$.") %>%
+      kable_styling(latex_options = "hold_position") %>%
   pack_rows("Normal", 1, 3) %>%
   pack_rows("$t_5$", 4, 6) %>%
   pack_rows("$t_3$", 7, 9) %>%
@@ -198,17 +198,15 @@ kable(table2,
   column_spec(6, bold = TRUE)
 
 # ============================================================================
-# Generate Figure 2 (CSDA style)
+# Generate Figure 2 (JSCS style)
 # ============================================================================
 plot_data <- coverage_results %>%
-  pivot_longer(cols = c(chi_sq, normal, pctl, stud),
-               names_to = "method",
-               values_to = "coverage") %>%
-  mutate(method = factor(method,
-                         levels = c("chi_sq", "normal", "pctl", "stud"),
-                         labels = c("Chi-sq", "Normal", "Pctl Boot", "Stud Boot")))
+    pivot_longer(cols = chi_sq:stud, names_to = "method", values_to = "coverage") %>%
+    mutate(Method = factor(Method, 
+                           levels = c("chi_sq", "normal", "pctl", "stud"),
+                           labels = c("Chi-square", "Normal approx.", "Percentile", "Studentized")))
 
-p_csda <- ggplot(plot_data,
+p_JSCS <- ggplot(plot_data,
                  aes(x = n,
                      y = coverage * 100,
                      linetype = method,
@@ -238,19 +236,18 @@ p_csda <- ggplot(plot_data,
     panel.grid.minor = element_blank()
   )
 
-ggsave("Figure2_Coverage_CSDA.pdf",
-       p_csda,
+ggsave("Figure2_Coverage_JSCS.pdf",
+       p_JSCS,
        width = 12,
        height = 10,
        dpi = 300)
 
 # Color version (for presentation or supplement)
 ggsave("Figure2_Coverage_color.pdf",
-       p_csda + scale_color_brewer(palette = "Set1"),
+       p_JSCS + scale_color_brewer(palette = "Set1"),
        width = 12,
        height = 10,
        dpi = 300)
 
 cat("\nSimulation complete.\n")
-
-cat("Files saved: coverage_results.rds, coverage_results.csv, Figure2_Coverage_CSDA.pdf, Figure2_Coverage_color.pdf\n")
+cat("Files saved: coverage_results.rds, coverage_results.csv, Figure2_Coverage_JSCS.pdf, Figure2_Coverage_color.pdf\n")
