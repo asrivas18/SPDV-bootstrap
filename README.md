@@ -1,12 +1,11 @@
-# SPDV-Bootstrap: Scalable Studentized Bootstrap Inference for Variance via Pairwise Difference Representation
-
+# SPDV-Bootstrap: Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation
 This repository contains the code, data, and materials to reproduce the results in the manuscript:
 
-**Title**: Scalable Studentized Bootstrap Inference for Variance via Pairwise Difference Representation  
+**Title**: Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation
 **Authors**: Sudesh K. Srivastav, Apurv Srivastav  
-**Journal**: Computational Statistics & Data Analysis (CSDA)  
+**Journal**: Journal of Statistical Computation and Simulation (JSCS)  
 **Submitted**: [Month Year]  
-**GitHub**: https://github.com/srivastav/SPDV-bootstrap  
+**GitHub**: https://github.com/asrivas18/SPDV-bootstrap 
 **Zenodo Archive**: DOI forthcoming upon acceptance (full replication kit with large simulation summaries)
 
 ## Overview
@@ -83,3 +82,4 @@ Sudesh K. Srivastav
 ssrivas@tulane.edu
 
 Department of Biostatistics and Data Science, Tulane University
+
