@@ -57,7 +57,7 @@ source("simulation.R")
 source("simulation_quick.R")Output:
 Console: Table 3 printed
 Files: coverage_results.rds, coverage_results.csv
-Plots: Figure2_Coverage_color.pdf, Figure2_Coverage_CSDA.pdf
+Plots: Figure2_Coverage_JSCS.pdf, Figure2_Coverage_CSDA.pdf
 
 Reproduce BMI Application (Section 6):Rsource("applications/bmi_application.R")
 Loads bmi_subset.rds
@@ -83,6 +83,7 @@ Sudesh K. Srivastav
 ssrivas@tulane.edu
 
 Department of Biostatistics and Data Science, Tulane University
+
 
 
 
