@@ -27,7 +27,7 @@ Key results:
 - `report.Rmd`: R Markdown source for full simulation report and reproducibility.
 - `sessionInfo.txt`: R session information (R 4.4.1, packages, etc.).
 - `RealData/brfss_bmi_subset.rds` or `.csv`: Preprocessed BRFSS BMI subset for real-data application.
-- `RealData/cps_income_subset.rds` or `.csv`: Preprocessed CPS INCOME subset for real-data application.
+- `RealData/cps_income_subset.rds` or `.csv`: Preprocessed CPS household income subset for real-data application.
 - `LICENSE`: MIT License (permissive for academic reuse).
 
 ## System Requirements
@@ -83,5 +83,6 @@ Sudesh K. Srivastav
 ssrivas@tulane.edu
 
 Department of Biostatistics and Data Science, Tulane University
+
 
 
