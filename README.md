@@ -26,7 +26,8 @@ Key results:
 - `Figure2_Coverage_CSDA.pdf`: Grayscale/Elsevier-style version for submission.
 - `report.Rmd`: R Markdown source for full simulation report and reproducibility.
 - `sessionInfo.txt`: R session information (R 4.4.1, packages, etc.).
-- `data/bmi_subset.rds` or `.csv`: Preprocessed BRFSS BMI subset for real-data application.
+- `RealData/brfss_bmi_subset.rds` or `.csv`: Preprocessed BRFSS BMI subset for real-data application.
+- `RealData/cps_income_subset.rds` or `.csv`: Preprocessed CPS INCOME subset for real-data application.
 - `LICENSE`: MIT License (permissive for academic reuse).
 
 ## System Requirements
@@ -82,4 +83,5 @@ Sudesh K. Srivastav
 ssrivas@tulane.edu
 
 Department of Biostatistics and Data Science, Tulane University
+
 
