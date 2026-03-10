@@ -12,7 +12,7 @@ set.seed(12345)
 # ---------------------------------------------------------------------------
 # Simulation size (change quick_test to TRUE for fast debugging)
 # ---------------------------------------------------------------------------
-quick_test <- TRUE
+quick_test <- FALSE
 if (quick_test) {
   M <- 500     # Monte Carlo replications
   B <- 500     # Bootstrap resamples per replication
@@ -205,6 +205,7 @@ plot_data <- coverage_results %>%
     mutate(Method = factor(Method, 
                            levels = c("chi_sq", "normal", "pctl", "stud"),
                            labels = c("Chi-square", "Normal approx.", "Percentile", "Studentized")))
+
 
 p_JSCS <- ggplot(plot_data,
                  aes(x = n,
