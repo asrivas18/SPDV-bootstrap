@@ -25,10 +25,8 @@ This project develops a scalable nonparametric framework for studentized (bootst
 ├── README.md
 ├── LICENSE
 ├── sessionInfo.txt
-├── ms\_article.tex
-├── ms\_article.pdf
-├── supplement.tex
-├── supplement.pdf
+├── ms_jas.pdf
+├── ms_jas_supplement.pdf
 ├── R/
 │   ├── spdv\_functions.R
 │   ├── run\_simulation\_study.R
