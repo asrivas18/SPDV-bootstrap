@@ -1,99 +1,129 @@
-# SPDV-Bootstrap: Scalable Studentized Bootstrap Variance Inference  
-via Linear-Time Pairwise Variance Representation
-
-This repository contains all code, data, and materials to reproduce the results in the manuscript:
-
-**Title**: Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation  
-**Authors**: Sudesh K. Srivastav, Apurv Srivastav  
-**Journal**: Journal of Statistical Computation and Simulation (JSCS)  
-**Status**: Submitted  
-**GitHub**: https://github.com/asrivas18/SPDV-bootstrap  
-**Zenodo Archive**: DOI forthcoming upon acceptance
-
-## Overview
-
-This work presents a scalable nonparametric framework for studentized (bootstrap-t) inference on the population variance. It exploits the classical algebraic identity between the Sample Pairwise Difference Variance (SPDV) and the unbiased sample variance $s^2$, enabling exact $O(n)$ computation per bootstrap resample instead of $O(n^2)$. This reduces total complexity to $O(Bn)$, making high-replication ($B \ge 50{,}000$) inference feasible for $n \approx 10^6$ on standard parallel hardware.
-
-Key results:
-- Theoretical: Bootstrap consistency under finite fourth moments (Theorem 1).
-- Empirical: Studentized intervals substantially outperform classical chi-square in non-normal settings (Table 2, Figure 1).
-- Computational: Up to 5–6 orders of magnitude speedup vs. naive pairwise implementation (Tables 1 & 2).
-
-## Repository Contents
+SPDV-Bootstrap: Scalable studentized bootstrap variance inference under skewness and heavy tails
+This repository contains code, data, and supplementary materials to reproduce the main results from the manuscript:
+Title: Scalable studentized bootstrap variance inference under skewness and heavy tails  
+Authors: Sudesh K. Srivastav, Apurv Srivastav  
+Target journal: Journal of Applied Statistics (JAS)  
+GitHub: https://github.com/asrivas18/SPDV-bootstrap  
+Zenodo archive: DOI to be added upon acceptance
+Overview
+This project develops a scalable nonparametric framework for studentized (bootstrap-t) inference for the population variance. It exploits the classical algebraic identity between the sample pairwise difference variance (SPDV) and the unbiased sample variance (s^2), allowing exact (O(n)) variance computation per bootstrap resample instead of direct (O(n^2)) pairwise evaluation. As a result, the total computational cost becomes (O(Bn)), making high-replication bootstrap inference feasible for large sample sizes and modern parallel hardware.
+Key results
+Theory: Nonparametric bootstrap consistency is established under a finite fourth-moment condition using the equivalent non-degenerate U-statistic representation of the sample variance.
+Empirical performance: In simulation settings with skewness and heavy tails, studentized intervals substantially outperform classical chi-square intervals and improve markedly over normal-approximation and percentile bootstrap intervals.
+Scalability: The identity-based implementation delivers several orders of magnitude speedup relative to direct pairwise evaluation and enables high-replication studentized inference at modern data scales.
+Repository contents
+```text
 .
-├── README.md                          # This file
-├── LICENSE                            # MIT License
-├── sessionInfo.txt                    # R session & package versions
-├── SPDV_manuscript.tex                # Full LaTeX source
-├── SPDV_manuscript.pdf                # Compiled PDF
+├── README.md
+├── LICENSE
+├── sessionInfo.txt
+├── ms_article.tex
+├── ms_article.pdf
+├── supplement.tex
+├── supplement.pdf
 ├── R/
-│   ├── spdv_functions.R               # Core functions: spdv_fast(), studentized_bootstrap()
-│   ├── run_simulation_study.R         # Reproduce Table 3, Figure 2, Table 5 (sensitivity to B)
-│   ├── run_real_data_examples.R       # BMI & CPS real-data examples (Section 6)
-│   ├── process_cps_2022.R             # Preprocess CPS income subset
-│   └── process_brfss_2022.R           # Preprocess BRFSS BMI subset
+│   ├── spdv_functions.R
+│   ├── run_simulation_study.R
+│   ├── run_real_data_examples.R
+│   ├── process_cps_2022.R
+│   └── process_brfss_2022.R
 ├── data/
 │   ├── README-data.md
-│   ├── brfss_bmi_subset.rds           # Louisiana BRFSS BMI (~5,432 obs)
-│   └── cps_income_subset_60k.rds      # CPS household income subset (~60,000 obs)
+│   ├── brfss_bmi_subset.rds
+│   └── cps_income_subset_60k.rds
 ├── results/
-│   ├── coverage_results.rds           # Raw Monte Carlo output
-│   └── runtime_comparison.csv         # Benchmark timings
+│   ├── coverage_results.rds
+│   ├── runtime_comparison.csv
+│   └── real_data_results.rds
 └── figures/
-├── coverage_plot_JSCS.pdf         # Main coverage figure (Figure 1)
-└── sensitivity_B_plot.pdf         # Coverage vs. B (Figure 2)
-text## System Requirements
-
-- R ≥ 4.4.0 (tested on 4.4.1)
-- Key packages: ggplot2, dplyr, tidyr, foreach, doParallel, doRNG, kableExtra, haven, moments
-- Hardware: 16-core CPU recommended (full simulation ~43 min parallel); ≥16 GB RAM
-
-## Installation
-
+    ├── coverage_plot.pdf
+    └── sensitivity_B_plot.pdf
+```
+File guide
+`ms_article.tex` / `ms_article.pdf`: Main manuscript.
+`supplement.tex` / `supplement.pdf`: Online supplement with additional computational benchmarks.
+`R/spdv_functions.R`: Core computational functions for SPDV-based variance estimation and studentized bootstrap inference.
+`R/run_simulation_study.R`: Reproduces the simulation study, including empirical coverage and sensitivity to the number of bootstrap replications.
+`R/run_real_data_examples.R`: Reproduces the BMI and CPS real-data examples.
+`R/process_cps_2022.R`, `R/process_brfss_2022.R`: Data preprocessing scripts.
+`data/`: Preprocessed subsets used in the manuscript examples.
+`results/`: Saved output objects and benchmark summaries.
+`figures/`: Plots used in the manuscript.
+System requirements
+R >= 4.4.0 (tested on R 4.4.1)
+Recommended packages: `ggplot2`, `dplyr`, `tidyr`, `foreach`, `doParallel`, `doRNG`, `kableExtra`, `haven`, `moments`
+Recommended hardware: multi-core CPU (16 cores used for reported benchmarks), at least 16 GB RAM
+Installation
+Install required packages in R:
 ```r
-install.packages(c("ggplot2", "dplyr", "tidyr", "foreach", "doParallel", "doRNG", "kableExtra", "haven", "moments"))
-How to Reproduce Results
-1. Simulation Study (Tables 2, 3; Figures 1, 2)
-Rsource("R/run_simulation_study.R")
-Outputs:
-
-Console: Table 2 (coverage), Table 3 (sensitivity to B)
-Files: results/coverage_results.rds, figures/coverage_plot_JSCS.pdf, figures/sensitivity_B_plot.pdf
-
-2. Real-Data Examples (Section 6)
-Rsource("R/run_real_data_examples.R")
-Outputs:
-
-BMI (Louisiana BRFSS 2022): variance ≈22.71, 95% CI [21.88, 23.59], root pairwise [6.61, 6.88]
-CPS income (2022 ASEC): variance ≈2.1×10⁹ USD², 95% studentized CI (heavy-tailed)
-
-See data/README-data.md for subset details.
+install.packages(c(
+  "ggplot2", "dplyr", "tidyr", "foreach", "doParallel",
+  "doRNG", "kableExtra", "haven", "moments"
+))
+```
+How to reproduce results
+1. Simulation study
+Reproduces the main coverage results and sensitivity-to-(B) analysis.
+```r
+source("R/run_simulation_study.R")
+```
+Expected outputs:
+Empirical coverage summaries for the competing confidence intervals.
+Sensitivity results for the number of bootstrap replications.
+Saved files such as:
+`results/coverage_results.rds`
+`figures/coverage_plot.pdf`
+`figures/sensitivity_B_plot.pdf`
+2. Real-data examples
+Reproduces the BRFSS BMI and CPS household income analyses from the manuscript.
+```r
+source("R/run_real_data_examples.R")
+```
+Expected outputs:
+BMI (Louisiana BRFSS 2022, (n = 5{,}117)): variance approximately 48.03, with studentized interval approximately [45.49, 50.90].
+CPS income (2022 CPS, (n = 60{,}000)): variance approximately (16.89 \times 10^9), with studentized interval approximately [16.04, 17.85] in units of (10^9).
+See `data/README-data.md` for details on the included subsets.
 3. Preprocess CPS data from scratch (optional)
-Rsource("R/process_cps_2022.R")
-Requires raw hhpub22.sas7bdat in raw_data/. Produces data/cps_income_subset_60k.rds/csv.
+```r
+source("R/process_cps_2022.R")
+```
+This script requires the raw CPS data file in the expected `raw_data/` location and produces the processed subset used in the manuscript.
 4. View session information
-RsessionInfo()
-# Compare to sessionInfo.txt in repo root
-Reproducibility Notes
-
-Random seeds: Fixed via doRNG (L'Ecuyer-CMRG) in all scripts.
-Parallel: doParallel + foreach (auto-detects cores).
-All results deterministic given seed, R version, and packages.
-Unstable studentized pivots (<5% in small n heavy tails) retained — contributes to slight conservativeness.
-
+```r
+sessionInfo()
+```
+Compare the output to `sessionInfo.txt` in the repository root.
+Simulation design summary
+The simulation study considers sample sizes (n \in {20, 50, 100}) under four distributions with unit variance:
+Normal
+(t_5)
+(t_3)
+Lognormal
+All distributions are linearly rescaled to unit variance so that comparisons reflect differences in skewness and tail behavior rather than scale. The study compares chi-square, normal-approximation, percentile bootstrap, and studentized bootstrap-(t) intervals.
+Reproducibility notes
+Random-number generation is controlled using `doRNG` with L'Ecuyer-CMRG streams.
+Parallel execution uses `foreach` and `doParallel`.
+Results are deterministic given the same random seed, R version, and package versions.
+In a small fraction of heavy-tailed simulation replications, near-zero resample-specific standard errors can produce extreme studentized pivots; these cases are retained in the reported results.
+Data notes
+BRFSS BMI subset: Louisiana adults with complete BMI records after preprocessing.
+CPS income subset: Positive household income values from the 2022 CPS extract used for the manuscript illustration.
+Preprocessing scripts are included so that readers can reconstruct the analysis datasets from the original public sources when permitted.
 Citation
-If you use this code or data, please cite:
-Srivastav, S. K., & Srivastav, A. (submitted). Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation. Journal of Statistical Computation and Simulation.
-bibtex@article{srivastav2025spdv,
-  title={Scalable Studentized Bootstrap Variance Inference via Linear-Time Pairwise Variance Representation},
-  author={Srivastav, Sudesh K. and Srivastav, Apurv},
-  journal={Journal of Statistical Computation and Simulation},
-  year={submitted},
-  note={Code available at https://github.com/asrivas18/SPDV-bootstrap}
+If this repository is useful in your work, please cite the associated manuscript:
+```bibtex
+@article{srivastav_spdv_bootstrap,
+  title   = {Scalable studentized bootstrap variance inference under skewness and heavy tails},
+  author  = {Srivastav, Sudesh K. and Srivastav, Apurv},
+  journal = {Journal of Applied Statistics},
+  year    = {submitted},
+  note    = {Code repository: https://github.com/asrivas18/SPDV-bootstrap}
 }
+```
 License
-MIT License — see LICENSE file.
+This repository is released under the MIT License. See `LICENSE` for details.
 Contact
-Sudesh K. Srivastav
-ssrivas@tulane.edu
-Department of Biostatistics and Data Science, Tulane University
+Sudesh K. Srivastav  
+Department of Biostatistics and Data Science  
+Tulane University  
+Email: ssrivas@tulane.edu
