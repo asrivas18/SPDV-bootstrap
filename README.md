@@ -48,8 +48,8 @@ This project develops a scalable nonparametric framework for studentized (bootst
 
 ### File guide
 
-* `ms\_article.tex` / `ms\_article.pdf`: Main manuscript.
-* `supplement.tex` / `supplement.pdf`: Online supplement with additional computational benchmarks.
+* `ms_jas.pdf`: Main manuscript.
+* `ms_jas_supplement.pdf`: Online supplement with additional computational benchmarks.
 * `R/spdv\_functions.R`: Core computational functions for SPDV-based variance estimation and studentized bootstrap inference.
 * `R/run\_simulation\_study.R`: Reproduces the simulation study, including empirical coverage and sensitivity to the number of bootstrap replications.
 * `R/run\_real\_data\_examples.R`: Reproduces the BMI and CPS real-data examples.
